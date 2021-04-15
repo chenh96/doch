@@ -26,7 +26,7 @@
             ></v-text-field>
 
             <v-text-field
-              v-if="mode === 'register'"
+              v-show="mode === 'register'"
               v-model="repeatPassword"
               :rules="repeatPasswordRules"
               type="password"

@@ -103,11 +103,10 @@
       </v-treeview>
     </v-navigation-drawer>
 
-    <v-main class="grey lighten-5 fill-height" v-if="documents.length > 0">
+    <v-main class="grey lighten-5 fill-height" v-if="documents.length > 0 && documentId">
       <mavon-editor
         id="editor"
         class="fill-height"
-        v-if="documents.length > 0 && documentId"
         :value="document.content"
         :placeholder="' '"
         :box-shadow="false"

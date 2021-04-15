@@ -28,13 +28,13 @@
         <v-icon size="20">mdi-content-copy</v-icon>
       </v-btn>
 
-      <v-btn @click="handleSave" icon>
+      <v-btn v-show="!fetchingGet" @click="handleSave" icon>
         <v-icon>mdi-content-save-outline</v-icon>
       </v-btn>
 
       <v-divider
         class="ml-2 mr-4"
-        v-if="parent || name"
+        v-show="parent || name"
         inset
         vertical
       ></v-divider>
