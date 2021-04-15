@@ -343,6 +343,8 @@ export default {
       if (this.sharing) {
         return
       }
+      this.publicPassword = ''
+      this.privatePassword = ''
       this.shareDialogShow = true
       this.sharing = true
       this.$axios
