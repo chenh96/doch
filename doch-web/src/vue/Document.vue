@@ -22,9 +22,9 @@
         DOCH
       </v-btn>
 
-      <v-divider class="mx-2" inset vertical></v-divider>
+      <v-divider v-show="!fetchingGet" class="mx-2" inset vertical></v-divider>
 
-      <v-btn @click="fetchCopies" icon>
+      <v-btn v-show="!fetchingGet" @click="fetchCopies" icon>
         <v-icon size="20">mdi-content-copy</v-icon>
       </v-btn>
 
@@ -312,7 +312,7 @@ export default {
           password: this.password,
         })
         .then((document) => {
-          this.content = document.content
+          this.content += document.content
           this.fetchingCopy = false
           this.copyDialogShow = false
         })
