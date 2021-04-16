@@ -18,13 +18,13 @@
 
       <v-divider
         class="mx-2"
-        v-show="!password.startsWith('pub-')"
+        v-show="!password.startsWith('PUB')"
         inset
         vertical
       ></v-divider>
 
       <v-btn
-        v-show="!password.startsWith('pub-')"
+        v-show="!password.startsWith('PUB')"
         icon
         :to="{
           path: '/document',
@@ -35,7 +35,7 @@
       </v-btn>
 
       <v-btn
-        v-show="documentId && !password.startsWith('pub-')"
+        v-show="documentId && !password.startsWith('PUB')"
         :to="{
           path: '/document',
           query: {
@@ -50,7 +50,7 @@
       </v-btn>
 
       <v-btn
-        v-show="documentId && !password.startsWith('pub-')"
+        v-show="documentId && !password.startsWith('PUB')"
         @click="deleteDialogShow = true"
         icon
       >

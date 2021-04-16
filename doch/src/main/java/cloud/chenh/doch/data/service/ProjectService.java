@@ -6,19 +6,19 @@ import cloud.chenh.doch.data.entity.Project;
 import cloud.chenh.doch.data.entity.User;
 import cloud.chenh.doch.data.repo.ProjectRepository;
 import cloud.chenh.doch.exception.InvalidDataException;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ProjectService extends BaseService<Project> {
     
-    public static final String PUBLIC_PREFIX = "pub-";
-    public static final String PRIVATE_PREFIX = "pri-";
+    public static final String PUBLIC_PREFIX = "PUB";
+    public static final String PRIVATE_PREFIX = "PRI";
     
     @Autowired
     private ProjectRepository projectRepository;
@@ -79,8 +79,8 @@ public class ProjectService extends BaseService<Project> {
     
     public Project share(Long id) throws InvalidDataException {
         Project project = findByUser(id);
-        project.setPublicPassword(PUBLIC_PREFIX + UUID.randomUUID().toString());
-        project.setPrivatePassword(PRIVATE_PREFIX + UUID.randomUUID().toString());
+        project.setPublicPassword(PUBLIC_PREFIX + RandomUtils.nextInt(100000, 999999));
+        project.setPrivatePassword(PRIVATE_PREFIX + RandomUtils.nextInt(100000, 999999));
         return save(project);
     }
     

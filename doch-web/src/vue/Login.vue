@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <v-container class="d-flex justify-center fill-height grey lighten-5">
+    <v-container class="d-flex justify-center fill-height grey lighten-5" fluid>
       <v-card class="mb-16" :loading="fetching" width="400" max-width="90%">
         <v-card-title>
           DOCH {{ mode === 'register' ? ' - 注册' : '' }}
@@ -26,7 +26,7 @@
             ></v-text-field>
 
             <v-text-field
-              v-show="mode === 'register'"
+              v-if="mode === 'register'"
               v-model="repeatPassword"
               :rules="repeatPasswordRules"
               type="password"
