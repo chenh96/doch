@@ -56,6 +56,12 @@
             >
               注册
             </v-btn>
+
+            <v-spacer></v-spacer>
+
+            <v-btn href="https://github.com/chenh96/doch" target="_blank" icon>
+              <v-icon>mdi-github</v-icon>
+            </v-btn>
           </v-row>
         </v-card-actions>
       </v-card>

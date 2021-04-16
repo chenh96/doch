@@ -1,5 +1,6 @@
 export default {
   // baseUrl: 'http://127.0.0.1:8848/',
+  // baseUrl: 'https://doc.chenh.tech/',
   baseUrl: getCurrentUrl(),
 }
 

@@ -20,11 +20,15 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn href="https://github.com/chenh96/doch" target="_blank" icon>
+        <v-icon>mdi-github</v-icon>
+      </v-btn>
+
       <v-btn @click="handleEditUser" icon>
         <v-icon>mdi-account-edit-outline</v-icon>
       </v-btn>
 
-      <v-btn class="mx-2" @click="handleLogout" icon>
+      <v-btn @click="handleLogout" icon>
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
