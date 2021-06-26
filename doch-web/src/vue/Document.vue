@@ -271,10 +271,10 @@ export default {
           password: this.password,
         })
         .then((info) => {
-          this.parents = info.parents
-          this.parent = info.document && info.document.parent
-          this.name = info.document && info.document.name
-          this.content = info.document && info.document.content
+          this.parents = info.parents || []
+          this.parent = info.document && info.document.parent || ''
+          this.name = info.document && info.document.name || ''
+          this.content = info.document && info.document.content || ''
           this.fetchingGet = false
         })
         .catch(() => {
@@ -312,6 +312,7 @@ export default {
           password: this.password,
         })
         .then((document) => {
+          console.log(123, this.content)
           this.content += document.content
           this.fetchingCopy = false
           this.copyDialogShow = false

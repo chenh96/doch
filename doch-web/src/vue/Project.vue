@@ -103,7 +103,10 @@
       </v-treeview>
     </v-navigation-drawer>
 
-    <v-main class="grey lighten-5 fill-height" v-if="documents.length > 0 && documentId">
+    <v-main
+      class="grey lighten-5 fill-height"
+      v-if="documents.length > 0 && documentId"
+    >
       <mavon-editor
         id="editor"
         class="fill-height"
@@ -322,10 +325,11 @@ export default {
       if (this.deletingDocument) {
         return
       }
+
       this.deletingDocument = true
       this.$axios
         .delete(this.password ? '/share' : '/document', {
-          documentId: this.documentId,
+          [this.password ? 'documentId' : 'id']: this.documentId,
           password: this.password,
         })
         .then(() => {
