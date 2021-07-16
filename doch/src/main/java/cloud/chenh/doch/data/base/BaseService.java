@@ -1,7 +1,5 @@
 package cloud.chenh.doch.data.base;
 
-import com.google.common.collect.Lists;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +29,7 @@ public abstract class BaseService<T extends BaseEntity> {
     }
     
     public List<T> findAll() {
-        return Lists.newArrayList(getRepository().findAll());
+        return getRepository().findAll();
     }
     
     public T findById(Long id) {

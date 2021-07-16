@@ -106,6 +106,7 @@
               :rules="parentRules"
               label="分组名"
               validate-on-blur
+              @update:search-input="(value) => (parent = value)"
             ></v-combobox>
             <v-text-field
               v-else
@@ -272,9 +273,9 @@ export default {
         })
         .then((info) => {
           this.parents = info.parents || []
-          this.parent = info.document && info.document.parent || ''
-          this.name = info.document && info.document.name || ''
-          this.content = info.document && info.document.content || ''
+          this.parent = (info.document && info.document.parent) || ''
+          this.name = (info.document && info.document.name) || ''
+          this.content = (info.document && info.document.content) || ''
           this.fetchingGet = false
         })
         .catch(() => {

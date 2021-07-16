@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib/framework'
 import zhHans from 'vuetify/es5/locale/zh-Hans' // 引入中文语言包
-import 'typeface-roboto/index.css' // 引入本地的Roboto字体资源
+// import 'typeface-roboto/index.css' // 引入本地的Roboto字体资源
 import '@mdi/font/css/materialdesignicons.css' // 引入本地的Material Design Ic
 
 Vue.use(Vuetify)
