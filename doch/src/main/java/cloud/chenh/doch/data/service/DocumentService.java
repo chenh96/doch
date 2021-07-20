@@ -42,7 +42,7 @@ public class DocumentService extends BaseService<Document> {
         if (userManager.get() == null ||
                 document.getProject() == null ||
                 document.getProject().getUser() == null ||
-                !document.getProject().getUser().getId().equals(userManager.get().getId())) {
+                !document.getProject().getUser().getUsername().equals(userManager.get())) {
             throw new InvalidDataException("无权操作此项目");
         }
         return document;
@@ -53,7 +53,7 @@ public class DocumentService extends BaseService<Document> {
     }
     
     public Document findOne(Long id) throws InvalidDataException {
-        Document document = getRepository().findFirstByIdAndProject_user(id, userManager.get());
+        Document document = getRepository().findFirstByIdAndProject_User_Username(id, userManager.get());
         if (document == null) {
             throw new InvalidDataException("找不到该文档");
         }
@@ -84,7 +84,7 @@ public class DocumentService extends BaseService<Document> {
     
     @Transactional
     public void deleteByUser(Long id) {
-        getRepository().deleteByIdAndProject_user(id, userManager.get());
+        getRepository().deleteByIdAndProject_User_Username(id, userManager.get());
     }
     
     public List<String> shareParents(Long projectId, String password) {
@@ -104,7 +104,7 @@ public class DocumentService extends BaseService<Document> {
     }
     
     public Document shareEdit(Long documentId, String password) throws InvalidDataException {
-        Document document = getRepository().findFirstByIdAndProject_privatePassword(documentId, password);
+        Document document = getRepository().findFirstByIdAndProject_PrivatePassword(documentId, password);
         if (document == null) {
             throw new InvalidDataException("找不到该文档");
         }
@@ -145,7 +145,7 @@ public class DocumentService extends BaseService<Document> {
     
     @Transactional
     public void deleteShare(Long id, String password) {
-        getRepository().deleteByIdAndProject_privatePassword(id, password);
+        getRepository().deleteByIdAndProject_PrivatePassword(id, password);
     }
     
     public void clean() {

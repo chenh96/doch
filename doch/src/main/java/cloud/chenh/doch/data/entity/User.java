@@ -22,13 +22,13 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
     
-    @JsonIgnore
-    @Column(nullable = false)
-    private String salt;
-    
-    @JsonIgnore
-    @Column(unique = true)
-    private String token;
+    //@JsonIgnore
+    //@Column(nullable = false)
+    //private String salt;
+    //
+    //@JsonIgnore
+    //@Column(unique = true)
+    //private String token;
     
     @JsonIgnore
     private Date operateAt;

@@ -15,8 +15,6 @@ public interface UserRepository extends BaseRepository<User> {
     
     Boolean existsByUsernameAndIdNot(String username, Long id);
     
-    User findFirstByToken(String token);
-    
     void deleteAllByOperateAtBefore(Date before);
     
 }

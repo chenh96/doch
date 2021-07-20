@@ -1,19 +1,18 @@
 package cloud.chenh.doch.auth;
 
-import cloud.chenh.doch.data.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserManager {
     
-    private final ThreadLocal<User> user = new ThreadLocal<>();
+    private final ThreadLocal<String> username = new ThreadLocal<>();
     
-    public void set(User user) {
-        this.user.set(user);
+    public void set(String user) {
+        this.username.set(user);
     }
     
-    public User get() {
-        return user.get();
+    public String get() {
+        return username.get();
     }
     
 }

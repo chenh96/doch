@@ -42,7 +42,7 @@ public class ProjectService extends BaseService<Project> {
         Project project;
         if (id == null) {
             project = new Project();
-            project.setUser(userManager.get());
+            project.setUser(userService.findByUsername(userManager.get()));
         } else {
             project = findByUser(id);
             if (project == null) {
@@ -66,7 +66,7 @@ public class ProjectService extends BaseService<Project> {
         }
         if (userManager.get() == null ||
                 project.getUser() == null ||
-                !project.getUser().getId().equals(userManager.get().getId())) {
+                !project.getUser().getUsername().equals(userManager.get())) {
             throw new InvalidDataException("无权操作此项目");
         }
         return project;
@@ -74,7 +74,7 @@ public class ProjectService extends BaseService<Project> {
     
     @Transactional
     public void deleteByUser(Long id) throws InvalidDataException {
-        getRepository().deleteByIdAndUser(id, userManager.get());
+        getRepository().deleteByIdAndUser_Username(id, userManager.get());
     }
     
     public Project share(Long id) throws InvalidDataException {

@@ -1,8 +1,7 @@
 package cloud.chenh.doch.auth;
 
-import cloud.chenh.doch.data.entity.User;
-import cloud.chenh.doch.data.service.UserService;
 import cloud.chenh.doch.exception.LoginException;
+import cloud.chenh.doch.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -22,9 +21,6 @@ public class AuthFilter implements Filter {
     
     @Value("${doch.auth.patterns}")
     private String[] authPatterns;
-    
-    @Autowired
-    private UserService userService;
     
     @Autowired
     private UserManager userManager;
@@ -55,8 +51,8 @@ public class AuthFilter implements Filter {
         
         String token = request.getHeader(TOKEN);
         try {
-            User user = userService.login(token);
-            userManager.set(user);
+            JwtUtils.decode(token);
+            userManager.set(JwtUtils.decode(token));
             succeed(servletRequest, servletResponse, chain);
         } catch (LoginException e) {
             fail(servletRequest, servletResponse, e);

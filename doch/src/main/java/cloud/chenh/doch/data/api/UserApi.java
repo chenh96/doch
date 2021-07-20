@@ -24,7 +24,7 @@ public class UserApi {
     @PostMapping("login")
     public Result<?> login(@RequestParam String username, @RequestParam String password) {
         try {
-            return Result.succeed(userService.login(username, password).getToken());
+            return Result.succeed(userService.login(username, password));
         } catch (LoginException e) {
             return Result.fail(e.getMessage());
         }
