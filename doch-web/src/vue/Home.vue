@@ -408,10 +408,10 @@ export default {
 
 <style scoped>
 .project-card-actions .v-btn {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .project-card:hover .project-card-actions .v-btn {
-  visibility: visible;
+  opacity: 1;
 }
 </style>
