@@ -23,6 +23,10 @@ html {
   bottom: 0;
 }
 
+.markdown-body {
+  border-bottom: none !important;
+}
+
 .hljs,
 .markdown-body pre code {
   background: transparent !important;
