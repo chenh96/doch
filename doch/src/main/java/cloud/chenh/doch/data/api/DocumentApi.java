@@ -12,14 +12,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("document")
 public class DocumentApi {
-    
+
     @Autowired
     private DocumentService documentService;
-    
+
     @GetMapping
     public Result<?> get(
-            @RequestParam(required = false) Long documentId,
-            @RequestParam(required = false) Long projectId
+        @RequestParam(required = false) Long documentId,
+        @RequestParam(required = false) Long projectId
     ) {
         try {
             if (documentId != null) {
@@ -33,28 +33,28 @@ public class DocumentApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @GetMapping("info")
     public Result<?> getEditInfo(@RequestParam Long projectId, @RequestParam(required = false) Long documentId) {
         try {
-            Map<String, Object> result = new HashMap<>();
-            
+            var result = new HashMap<String, Object>();
+
             result.put("parents", documentService.findParents(projectId));
             result.put("document", documentId == null ? null : documentService.findByUser(documentId));
-            
+
             return Result.succeed(result);
         } catch (InvalidDataException e) {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @PostMapping
     public Result<?> post(
-            @RequestParam(required = false) Long documentId,
-            @RequestParam Long projectId,
-            @RequestParam String parent,
-            @RequestParam String name,
-            @RequestParam(required = false) String content
+        @RequestParam(required = false) Long documentId,
+        @RequestParam Long projectId,
+        @RequestParam String parent,
+        @RequestParam String name,
+        @RequestParam(required = false) String content
     ) {
         try {
             return Result.succeed(documentService.save(documentId, projectId, parent, name, content));
@@ -62,11 +62,11 @@ public class DocumentApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @DeleteMapping
     public Result<?> delete(@RequestParam Long id) {
         documentService.deleteByUser(id);
         return Result.succeed();
     }
-    
+
 }

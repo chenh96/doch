@@ -4,6 +4,7 @@ import cloud.chenh.doch.data.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity {

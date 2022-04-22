@@ -4,11 +4,13 @@ import cloud.chenh.doch.data.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 @Entity
 @Table(name = "document")
 public class Document extends BaseEntity {

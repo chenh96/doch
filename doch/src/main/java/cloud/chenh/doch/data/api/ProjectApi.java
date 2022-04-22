@@ -13,19 +13,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("project")
 public class ProjectApi {
-    
+
     @Autowired
     private ProjectService projectService;
-    
+
     @GetMapping
     public Result<?> get() {
         return Result.succeed(projectService.findDisplay());
     }
-    
+
     @PostMapping
     public Result<?> post(
-            @RequestParam(required = false) Long id,
-            @RequestParam String name
+        @RequestParam(required = false) Long id,
+        @RequestParam String name
     ) {
         try {
             return Result.succeed(projectService.edit(id, name));
@@ -33,7 +33,7 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @DeleteMapping
     public Result<?> delete(@RequestParam Long id) {
         try {
@@ -43,11 +43,11 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @PostMapping("transfer")
     public Result<?> transfer(
-            @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String username
+        @RequestParam(required = false) Long id,
+        @RequestParam(required = false) String username
     ) {
         try {
             return Result.succeed(projectService.transfer(id, username));
@@ -55,12 +55,12 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @PostMapping("share")
     public Result<?> addShare(@RequestParam Long id) {
         try {
-            Project project = projectService.share(id);
-            Map<String, String> passwords = new HashMap<>();
+            var project = projectService.share(id);
+            var passwords = new HashMap<String, String>();
             passwords.put("public", project.getPublicPassword());
             passwords.put("private", project.getPrivatePassword());
             return Result.succeed(passwords);
@@ -68,12 +68,12 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @GetMapping("share")
     public Result<?> getShare(@RequestParam Long id) {
         try {
-            Project project = projectService.findByUser(id);
-            Map<String, String> passwords = new HashMap<>();
+            var project = projectService.findByUser(id);
+            var passwords = new HashMap<String, String>();
             passwords.put("public", project.getPublicPassword());
             passwords.put("private", project.getPrivatePassword());
             return Result.succeed(passwords);
@@ -81,12 +81,12 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
     @DeleteMapping("share")
     public Result<?> cancelShare(@RequestParam Long id) {
         try {
-            Project project = projectService.cancelShare(id);
-            Map<String, String> passwords = new HashMap<>();
+            var project = projectService.cancelShare(id);
+            var passwords = new HashMap<String, String>();
             passwords.put("public", project.getPublicPassword());
             passwords.put("private", project.getPrivatePassword());
             return Result.succeed(passwords);
@@ -94,5 +94,5 @@ public class ProjectApi {
             return Result.fail(e.getMessage());
         }
     }
-    
+
 }
